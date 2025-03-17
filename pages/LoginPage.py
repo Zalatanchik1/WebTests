@@ -2,20 +2,49 @@ from pages.BasePage import BasePage
 from  selenium.webdriver.common.by import By
 
 class LoginPageLocators:
-    QR_TAB = (By.ID, 'login-9255135378')
-    INPUT_TAB = (By.ID, 'qrCode-9255135426')
+    QR_TAB = (By.XPATH, '//*[@data-l="t,login_tab"]')
+    LOGIN_TAB = (By.XPATH, '//*[@data-l="t,login_tab"]')
 
     LOGIN_FIELD = (By.ID, 'field_email')
     PASSWORD_FIELD = (By.ID, 'field_password')
     LOGIN_BUTTON = (By.XPATH, '//*[@data-l="t,sign_in"]')
-    QR_BUTTON = (By.ID, 'qrCode-8899793566')
-    HYPER_LINK_CANT_LOGIN = (By.ID, '//*[@data-l="t,restore"]')
+    QR_BUTTON = (By.XPATH, '//*[@data-l="t,get_qr"]')
+    HYPER_LINK_CANT_LOGIN = (By.XPATH, '//*[@data-l="t,restore"]')
 
     REGISTER_BUTTON = (By.XPATH, '//*[@class="button-pro __sec mb-3x __wide"]')
     VK_ICON = (By.XPATH, '//*[@class="i ic social-icon __s __vk_id"]')
     EMAIL_ICON = (By.XPATH, '//*[@class="i ic social-icon __s __mailru"]')
     YANDEX_ICON = (By.XPATH, '//*[@class="i ic social-icon __s __mailru"]')
 
+    ERROR_TEXT = (By.XPATH, '//*[@class="input-e login_error"]')
+
 
 class LoginPageHelper(BasePage):
-    pass
+    def __init__(self, driver):
+        self.driver = driver
+        self.check_page()
+
+    def check_page(self):
+        self.find_element(LoginPageLocators.QR_TAB)
+        self.find_element(LoginPageLocators.LOGIN_TAB)
+        self.find_element(LoginPageLocators.LOGIN_FIELD)
+        self.find_element(LoginPageLocators.PASSWORD_FIELD)
+        self.find_element(LoginPageLocators.LOGIN_BUTTON)
+        self.find_element(LoginPageLocators.QR_BUTTON)
+        self.find_element(LoginPageLocators.HYPER_LINK_CANT_LOGIN)
+        self.find_element(LoginPageLocators.REGISTER_BUTTON)
+        self.find_element(LoginPageLocators.VK_ICON)
+        self.find_element(LoginPageLocators.EMAIL_ICON)
+        self.find_element(LoginPageLocators.YANDEX_ICON)
+
+    def click_login(self):
+        self.find_element(LoginPageLocators.LOGIN_BUTTON).click()
+
+    def get_error_text(self):
+        return self.find_element(LoginPageLocators.ERROR_TEXT).text
+
+    def click_login_field(self):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).click()
+
+    def input_value_login_field(self):
+        self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys('username')

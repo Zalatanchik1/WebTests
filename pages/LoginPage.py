@@ -13,7 +13,7 @@ class LoginPageLocators:
     QR_BUTTON = (By.XPATH, '//*[@data-l="t,get_qr"]')
     HYPER_LINK_CANT_LOGIN = (By.XPATH, '//*[@data-l="t,restore"]')
 
-    REGISTER_BUTTON = (By.XPATH, '//*[@class="button-pro __sec mb-3x __wide"]')
+    REGISTRATION_BUTTON = (By.XPATH, '//*[@class="button-pro __sec mb-3x __wide"]')
     VK_ICON = (By.XPATH, '//*[@class="i ic social-icon __s __vk_id"]')
     EMAIL_ICON = (By.XPATH, '//*[@class="i ic social-icon __s __mailru"]')
     YANDEX_ICON = (By.XPATH, '//*[@class="i ic social-icon __s __mailru"]')
@@ -40,7 +40,7 @@ class LoginPageHelper(BasePage):
         self.find_element(LoginPageLocators.LOGIN_BUTTON)
         self.find_element(LoginPageLocators.QR_BUTTON)
         self.find_element(LoginPageLocators.HYPER_LINK_CANT_LOGIN)
-        self.find_element(LoginPageLocators.REGISTER_BUTTON)
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON)
         self.find_element(LoginPageLocators.VK_ICON)
         self.find_element(LoginPageLocators.EMAIL_ICON)
         self.find_element(LoginPageLocators.YANDEX_ICON)
@@ -69,3 +69,8 @@ class LoginPageHelper(BasePage):
     def click_recovery(self):
         self.attach_screenshot()
         self.find_element(LoginPageLocators.RECOVERY_BUTTON).click()
+
+    @allure.step('Нажимаем на кнопку "Регистрация"')
+    def click_registration(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.REGISTRATION_BUTTON).click()

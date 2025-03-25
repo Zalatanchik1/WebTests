@@ -1,8 +1,8 @@
 import allure
 
 from selenium.webdriver import ActionChains
-from pages.BasePage import BasePage
-from  selenium.webdriver.common.by import By
+from pages.BasePage import BasePageHelper
+from selenium.webdriver.common.by import By
 
 class HelpPageLocators:
     ACTUAL_TODAY = (By.XPATH, '//*[@href="/help/segodnya-aktualno"]')
@@ -19,7 +19,7 @@ class HelpPageLocators:
     IMPORTANT_INFORMATION = (By.XPATH, '//*[@href="/help/poleznaya-informaciya"]')
     ADVERTISEMENT_CABINET = (By.XPATH, '//*[@href="/help/reklamnyi-kabinet"]')
 
-class HelpPageHelper(BasePage):
+class HelpPageHelper(BasePageHelper):
     def __init__(self, driver):
         self.driver = driver
         self.check_page()

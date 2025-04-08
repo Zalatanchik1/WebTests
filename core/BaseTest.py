@@ -3,7 +3,9 @@ from selenium import webdriver
 
 @pytest.fixture(scope="session")
 def browser():
-    driver = webdriver.Chrome()
-    driver.maximize_window()
+    options = webdriver.ChromeOptions()
+    options.add_argument("--lang=ru")
+    driver = webdriver.Remote(command_executor="http://217.114.8.248:8080", options=options)
     yield driver
-    driver.quit()
+    if driver:
+        driver.quit()
